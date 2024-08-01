@@ -1,0 +1,10 @@
+.nav-Link{
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-Link:hover{
+    color: coral;
+    font-weight: 600;
+    font-size: 17px;
+}

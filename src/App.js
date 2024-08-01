@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './header/Header'
+import Body from './body/Body'
+import { createBrowserRouter ,Outlet} from 'react-router-dom'
+import Offers from './Offers'
+import Help from './Help'
+import Cart from './Cart'
+import MenuItems from './MenuItems'
+import { createContext } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+function App(){
+    return <div>
+
+    <Header />
+  <Outlet />
     </div>
-  );
 }
+export let context = createContext()
 
-export default App;
+let name = 'Linitha'
+export default App
+export let router = createBrowserRouter([
+  {
+    path:'/',
+    element:<App />,
+    children:[
+      {
+        path:'/',
+        element:<context.Provider value={name}>
+        <Body />
+
+        </context.Provider>
+      },
+      {
+        path:'/offers',
+        element:<Offers />
+      },
+      {
+        path:'/help',
+        element:<Help />
+      },
+      {
+        path:'/cart',
+        element:<Cart />
+      },
+      {
+        path:'/restaurants/:restId',
+        element:<MenuItems />
+      }
+     
+    ]
+
+  }
+])
+
