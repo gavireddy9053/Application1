@@ -1,10 +1,10 @@
-import Header from './header/Header'
-import Body from './body/Body'
+import Header from './components/Header'
+import Body from './components/Body'
 import { createBrowserRouter ,Outlet} from 'react-router-dom'
-import Offers from './Offers'
-import Help from './Help'
-import Cart from './Cart'
-import MenuItems from './MenuItems'
+import Offers from './components/Offers'
+import Help from './components/Help'
+import Cart from './components/Cart'
+import MenuItems from './components/MenuItems'
 import { createContext } from 'react'
 
 function App(){

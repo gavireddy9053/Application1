@@ -1,11 +1,13 @@
 import React from 'react'
-import './body.css'
+import '../body.css'
 import { useState,useEffect } from 'react'
-import Card from '../card/Card'
+import Card from './Card'
 import { Link } from 'react-router-dom'
-import { HOC } from '../card/Card'
-import Shimmer from '../shimmer'
+import { HOC } from './Card'
+import Shimmer from './shimmer'
+import CourosalList from './CourosalList'
 
+let jsonData;
 function Body(props) {
   let [restaurantsData,setRestaurantsData] = useState([])
 let [searchItem,setSearchItem] = useState('')
@@ -17,7 +19,7 @@ let HOCCard = HOC(Card)
   async function fetchData(){
     setShimmer(true)
     let data = await  fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=16.30070&lng=80.46390&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING')
-    let jsonData = await data.json()
+     jsonData = await data.json()
     let restaurantsArray = jsonData.data.cards[4].card.card.
     gridElements.infoWithStyle.restaurants
 setRestaurantsData(restaurantsArray)
@@ -42,13 +44,17 @@ setNoResults(filteredItems.length == 0)
          setSearchItem(e.target.value)
          console.log(e.target.value)
       }} style={{marginLeft:'20px' ,width:'40%',borderWidth:'1px'}} className='rounded'/>
+<CourosalList item={jsonData?.data.cards[0]}/>
 
 {shimmer ? <Shimmer />:(
   noResults ? <div className='text-center'>no results found</div> :
     <div className='card-conatiner'>
     
     {filteredData?.map((item,index)=>{
-      return <Link key={index} to={`/restaurants/${item.info.id}`}>{item.info.veg ?<HOCCard ele={item}/> :<Card ele={item} />}</Link>
+      return <div>
+
+        <Link key={index} to={`/restaurants/${item.info.id}`}>{item.info.veg ?<HOCCard ele={item}/> :<Card ele={item} />}</Link>
+        </div>
     })}
     </div>)}
     </div>

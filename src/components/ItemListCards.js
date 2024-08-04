@@ -1,5 +1,5 @@
 import React from 'react'
-import './body/body.css'
+import '../body.css'
 
 function ItemListCards(props) {
        let imgUrl = 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Fragment } from 'react'
-import '../body/body.css'
+import '../body.css'
 import { useContext } from 'react'
 import { context } from '../App'
 
